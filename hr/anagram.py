@@ -1,3 +1,13 @@
+'''
+Sample Input
+
+cde
+abc
+Sample Output
+
+4
+'''
+
 def number_needed(a, b):
     num = 0
     x = get_string_dict(a)
