@@ -47,37 +47,24 @@ class MyQueue(object):
     def __init__(self):
         self.first = Stack()
         self.second = Stack()
-        self.in_order = False
+
 
     def peek(self):
-        if self.in_order:
-            return self.second.peek()
-        else:
+        if self.second.is_empty():
             while not self.first.is_empty():
                 self.second.push(self.first.pop())
-            data = self.second.peek()
-            self.in_order = True
-            return data
+        return self.second.peek()
 
 
     def pop(self):
-        if self.in_order:
-            return self.second.pop()
-        else:
+        if self.second.is_empty():
             while not self.first.is_empty():
                 self.second.push(self.first.pop())
-            data = self.second.pop()
-            self.in_order = True
-            return data
+        return self.second.pop()
 
     def put(self, value):
-        if not self.in_order:
-            self.first.push(value)
-        else:
-            while not self.second.is_empty():
-                self.first.push(self.second.pop())
-            self.first.push(value)
-            self.in_order = False
+        self.first.push(value)
+
 
 
 queue = MyQueue()
