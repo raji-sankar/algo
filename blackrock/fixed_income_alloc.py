@@ -15,21 +15,23 @@ def allocate(minimum_trade, increment, available_units, portfolio_order):
             total_order = sum([value[0] for value in portfolio_order_sorted_by_value[i:]])
             proportional_allocation = portfolio[0] * available_units /total_order
             allocated_amt = 0
-            if proportional_allocation < min_trade:
-                allocation[portfolio[1]] = 0
+            if proportional_allocation < minimum_trade:
+                if proportional_allocation < min_trade:
+                    allocation[portfolio[1]] = 0
+                else:
+                    allocated_amt = tradeable_amount(minimum_trade, minimum_trade, increment)
             else:
-                if proportional_allocation >= minimum_trade:
-                    if proportional_allocation >= portfolio[0]:
-                        allocated_amt = portfolio[0]
-                    else:
-                        allocated_amt = tradeable_amount(proportional_allocation, minimum_trade, increment)
-                    if allocated_amt > available_units:
-                        allocated_amt = tradeable_amount(available_units, minimum_trade, increment)
-                    remaining_amt = portfolio[0] - allocated_amt
-                    if remaining_amt > 0 and remaining_amt < minimum_trade:
-                        allocated_amt = 0
-                    elif remaining_amt > 0 and remaining_amt != tradeable_amount(remaining_amt, minimum_trade, increment):
-                        allocated_amt = 0
+                if proportional_allocation >= portfolio[0]:
+                    allocated_amt = portfolio[0]
+                else:
+                    allocated_amt = tradeable_amount(proportional_allocation, minimum_trade, increment)
+                if allocated_amt > available_units:
+                    allocated_amt = tradeable_amount(available_units, minimum_trade, increment)
+                remaining_amt = portfolio[0] - allocated_amt
+                if remaining_amt > 0 and remaining_amt < minimum_trade:
+                    allocated_amt = 0
+                elif remaining_amt > 0 and remaining_amt != tradeable_amount(remaining_amt, minimum_trade, increment):
+                    allocated_amt = 0
 
             allocation[portfolio[1]] = allocated_amt
             available_units = available_units - allocated_amt

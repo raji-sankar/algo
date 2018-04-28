@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/algo.iml" filepath="$PROJECT_DIR$/.idea/algo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../google-python-exercises/.idea/google-python-exercises.iml" filepath="$PROJECT_DIR$/../google-python-exercises/.idea/google-python-exercises.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../python-features/.idea/python-features.iml" filepath="$PROJECT_DIR$/../python-features/.idea/python-features.iml" />
     </modules>
   </component>
 </project>
